@@ -162,7 +162,7 @@ def update_graph(defect_desc, job_detail, job_sum, job_head, selected_shipname, 
 
 # Run the app
 if __name__ == '__main__':
-    app.run_server(host='192.168.0.225', port=8050, debug=True)
+    app.run_server(host='192.168.0.0', port=8050, debug=True)
 ```
 
 This code integrates the normal distribution curve generation and plotting of the predicted "EMD" value on the curve with your existing code. The plot is rendered in the web page using the `dcc.Graph` component from Dash. Please replace `model.predict(input_data)` with the actual prediction from your model. Let me know if you need further assistance! 😊
