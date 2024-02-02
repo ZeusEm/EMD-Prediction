@@ -65,43 +65,64 @@ app = Dash(__name__)
 
 # Layout of the app
 app.layout = html.Div([
-    dcc.Input(id='defect-desc-input', type='text', placeholder='Enter defect description'),
-    dcc.Input(id='job-detail-input', type='text', placeholder='Enter job detail'),
-    dcc.Input(id='job-sum-input', type='text', placeholder='Enter job summary'),
-    dcc.Input(id='job-head-input', type='text', placeholder='Enter job head'),
-    dcc.Dropdown(
-        id='categorical-dropdown-shipname',
-        options=[{'label': col, 'value': col} for col in df["STR_SHIPNAME"].unique()],
-        value=df["STR_SHIPNAME"].unique()[0],
-        placeholder='Select a ship name'
-    ),
-    dcc.Dropdown(
-        id='categorical-dropdown-refitcode',
-        options=[{'label': col, 'value': col} for col in df["STR_REFIT_CODE"].unique()],
-        value=df["STR_REFIT_CODE"].unique()[0],
-        placeholder='Select a refit code'
-    ),
-    dcc.Dropdown(
-        id='categorical-dropdown-offloaded',
-        options=[{'label': col, 'value': col} for col in df["FLG_OFFLOADED"].unique()],
-        value=df["FLG_OFFLOADED"].unique()[0],
-        placeholder='Select offloaded status'
-    ),
-    dcc.Dropdown(
-        id='categorical-dropdown-equipment',
-        options=[{'label': col, 'value': col} for col in df["EQUIPMENT_NAME"].unique()],
-        value=df["EQUIPMENT_NAME"].unique()[0],
-        placeholder='Select equipment name'
-    ),
-    dcc.Dropdown(
-        id='categorical-dropdown-qcremark',
-        options=[{'label': col, 'value': col} for col in df["WI_QC_REMARK"].unique()],
-        value=df["WI_QC_REMARK"].unique()[0],
-        placeholder='Select QC remark'
-    ),
-    html.Div(id='prediction-label'),
-    dcc.Graph(id='prediction-plot'),
-])
+    html.H1('Your App Name', style={'textAlign': 'center', 'color': '#5072A7', 'fontFamily': 'Arial', 'fontWeight': 'bold', 'padding': '20px'}),
+    html.Div([
+        html.Div([
+            dcc.Input(id='defect-desc-input', type='text', placeholder='Enter defect description', className='four columns', style={'margin': '10px'}),
+            dcc.Input(id='job-detail-input', type='text', placeholder='Enter job detail', className='four columns', style={'margin': '10px'}),
+            dcc.Input(id='job-sum-input', type='text', placeholder='Enter job summary', className='four columns', style={'margin': '10px'}),
+            dcc.Input(id='job-head-input', type='text', placeholder='Enter job head', className='four columns', style={'margin': '10px'}),
+        ], className='row'),
+        html.Div([
+            dcc.Dropdown(
+                id='categorical-dropdown-shipname',
+                options=[{'label': col, 'value': col} for col in df["STR_SHIPNAME"].unique()],
+                value=df["STR_SHIPNAME"].unique()[0],
+                placeholder='Select a ship name',
+                className='six columns',
+                style={'margin': '10px'}
+            ),
+            dcc.Dropdown(
+                id='categorical-dropdown-refitcode',
+                options=[{'label': col, 'value': col} for col in df["STR_REFIT_CODE"].unique()],
+                value=df["STR_REFIT_CODE"].unique()[0],
+                placeholder='Select a refit code',
+                className='six columns',
+                style={'margin': '10px'}
+            ),
+        ], className='row'),
+        html.Div([
+            dcc.Dropdown(
+                id='categorical-dropdown-offloaded',
+                options=[{'label': col, 'value': col} for col in df["FLG_OFFLOADED"].unique()],
+                value=df["FLG_OFFLOADED"].unique()[0],
+                placeholder='Select offloaded status',
+                className='six columns',
+                style={'margin': '10px'}
+            ),
+            dcc.Dropdown(
+                id='categorical-dropdown-equipment',
+                options=[{'label': col, 'value': col} for col in df["EQUIPMENT_NAME"].unique()],
+                value=df["EQUIPMENT_NAME"].unique()[0],
+                placeholder='Select equipment name',
+                className='six columns',
+                style={'margin': '10px'}
+            ),
+        ], className='row'),
+        html.Div([
+            dcc.Dropdown(
+                id='categorical-dropdown-qcremark',
+                options=[{'label': col, 'value': col} for col in df["WI_QC_REMARK"].unique()],
+                value=df["WI_QC_REMARK"].unique()[0],
+                placeholder='Select QC remark',
+                className='twelve columns',
+                style={'margin': '10px'}
+            ),
+        ], className='row'),
+    ], className='container', style={'backgroundColor': '#F2F2F2', 'borderRadius': '15px', 'padding': '20px'}),
+    html.Div(id='prediction-label', className='container', style={'textAlign': 'center', 'color': '#5072A7', 'fontFamily': 'Arial', 'fontWeight': 'bold', 'padding': '20px'}),
+    dcc.Graph(id='prediction-plot', className='container'),
+], style={'backgroundColor': '#E5E5E5', 'padding': '20px'})
 
 # Callback to update the graph and the label based on the input and dropdown selections
 @app.callback(
