@@ -53,4 +53,4 @@ def update_graph(defect_desc, job_detail, job_sum, job_head, selected_shipname, 
 
 # Run the app
 if __name__ == '__main__':
-    app.run_server(host='192.168.0.225', port=8050, debug=True)
+    app.run_server(host='192.168.0.0', port=8050, debug=True)
